@@ -1,13 +1,15 @@
 // import { config } from "../../config/config"
 import { Theme } from "../../module/theme"
 import { Banner } from "../../module/banner"
+import { Category } from "../../module/category"
 
 /* pages/home/home.js*/
 
 Page({
   data: {
-    ThemeA: null,
-    ThemeB: null,
+    themeA: null,
+    BannerB: null,
+    grid:[]
   },
 
   /**
@@ -25,10 +27,12 @@ Page({
   },
   async initAllData() {
     const themeA = await Theme.getHomeLocationA()
-    const themeB = await Banner.getHomeLocationB()
+    const BannerB = await Banner.getHomeLocationB()
+    const grid=await Category.getGridCategory()
     this.setData({
       themeA: themeA[0],
-      themeB
+      BannerB,
+      grid
     })
   },
   onPullDownRefresh: function () {
